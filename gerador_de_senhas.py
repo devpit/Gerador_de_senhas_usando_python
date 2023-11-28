@@ -3,6 +3,7 @@ import string
 
 def gerador_de_senhas():
     tamanho = random.randint(12, 30)
+    caracteres = string.ascii_letters + string.digits + string.punctuation
 
     # Garante pelo menos um caractere de cada tipo
     senha = [
@@ -13,7 +14,7 @@ def gerador_de_senhas():
     ]
 
     # Preenche o restante da senha
-    senha += random.choices(string.ascii_letters + string.digits + string.punctuation, k=tamanho - 4)
+    senha += random.choices(caracteres, k=tamanho - 4)
 
     # Embaralha a senha
     random.shuffle(senha)
@@ -21,6 +22,11 @@ def gerador_de_senhas():
     # Retorna a senha como string
     return ''.join(senha)
 
-senha = gerador_de_senhas()
-print(f'A senha gerada foi: {senha}')
-print(f'O tamanho da senha é {len(senha)}')
+while True:
+    senha = gerador_de_senhas()
+    print(f'A senha gerada foi: {senha}')
+    print(f'O tamanho da senha é {len(senha)}')
+
+    opcao = input('Deseja gerar outra senha? (1: sim, 2: não): ')
+    if opcao != '1':
+        break
